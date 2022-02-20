@@ -1,4 +1,4 @@
-#This script is in progress, awaiting a test
+#This script is in progress
 $Targets = "server01"
 
 # Check if work directory exists if not create it
@@ -12,7 +12,7 @@ $OfficeArguments = '/adminfile SLaddInstallWord.MSP'
 $workdir = "C:\AutomatedInstalls\MSOffice"
 
 #Install word (local install)
-Start-Process -FilePath 'C:\AutomatedInstalls\MSOffice\MS Office 2016 64Bit\setup.exe' -Wait -Verb runas -PassThru
+Start-Process -FilePath 'C:\AutomatedInstalls\MSOffice\MS Office 2016 64Bit\word.en-us\wordmui.msi' -Wait -Verb runas -PassThru
 
 #Not working yet
 ###Start-Process -FilePath 'C:\AutomatedInstalls\MSOffice\MS Office 2016 64Bit\setup.exe' -ArgumentList $OfficeArguments -Wait
