@@ -1,0 +1,33 @@
+#This script is in progress
+$Targets = "server01"
+
+$OfficeArguments = '/adminfile SLaddInstallWord.MSP'
+$workdir = "C:\AutomatedInstalls\MSOffice"
+Start-Process -FilePath 'C:\AutomatedInstalls\MSOffice\MS Office 2016 64Bit\setup.exe' -ArgumentList $OfficeArguments -Wait
+
+# Check if work directory exists if not create it
+
+  If (Test-Path -Path $workdir -PathType Container)
+  { Write-Host "$workdir already exists" -ForegroundColor Red}
+  ELSE
+  { New-Item -Path $workdir  -ItemType directory }
+
+#---End of install section---#
+
+#Display a notification to confirm a successful install
+Write-Host "MS Word installed successfully on $Targets"
+
+$NotificationTitle = 'MS Word Installs'
+$NotificationText = 'MS Word installed successfully on $Targets'
+
+[reflection.assembly]::LoadWithPartialName('System.Windows.Forms')
+[reflection.assembly]::LoadWithPartialName('System.Drawing')
+$notify = New-Object system.windows.forms.notifyicon
+$notify.icon = [System.Drawing.SystemIcons]::Information
+$notify.visible = $true
+$notify.showballoontip(10,$NotificationTitle,$NotificationText,[system.windows.forms.tooltipicon]::None)
+
+#Notification Text Options
+#MS Word Clients updated successfully on $Targets!
+
+# source - https://community.spiceworks.com/topic/2060523-powershell-scripting-unattended-install-of-office-2016 
