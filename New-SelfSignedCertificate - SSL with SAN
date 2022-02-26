@@ -3,10 +3,14 @@
 #               New self-signed certificate with SAN values
 #______________________________________________________________________
 
+$trustedroot = "Cert:\LocalMachine\AuthRoot"
 $sanfqdn = "tlbdc000.domain00.local"
 $san = "tlbdc000"
 
-New-SelfSignedCertificate -Subject $san -TextExtension @("cn=$sanfqdn&DNS=$san&san=$sanfqdn&san=$san")
+New-SelfSignedCertificate -Subject $sanfqdn"&"$san -TextExtension @("cn=$sanfqdn&cn=$san&DNS=$san&san=$sanfqdn&san=$san") 
+
+#Not working yet to install immediately into trusted root. This is easy manually though.
+#-CertStoreLocation $trustedroot
 
 #EXAMPLE
 
