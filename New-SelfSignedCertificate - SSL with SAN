@@ -1,0 +1,13 @@
+#______________________________________________________________________
+#                  CERTIFICATES POWERSHELL TOOLKIT V1
+#               New self-signed certificate with SAN values
+#______________________________________________________________________
+
+$sanfqdn = "tlbdc000.domain00.local"
+$san = "tlbdc000"
+
+New-SelfSignedCertificate -Subject $san -TextExtension @("cn=$sanfqdn&DNS=$san&san=$sanfqdn&san=$san")
+
+#EXAMPLE
+
+#New-SelfSignedCertificate -Subject "localhost" -TextExtension @("2.5.29.17={text}DNS=localhost&IPAddress=127.0.0.1&IPAddress=::1")
